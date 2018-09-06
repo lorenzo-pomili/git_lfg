@@ -1,0 +1,28 @@
+{
+  "name": "git_lfg",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack -w",
+    "webpack:production": "NODE_ENV=production webpack"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "reason-react": "0.5.3"
+  },
+  "devDependencies": {
+    "bs-platform": "4.0.5",
+    "express": "4.16.3",
+    "webpack": "4.17.2",
+    "webpack-cli": "3.1.0"
+  }
+}
