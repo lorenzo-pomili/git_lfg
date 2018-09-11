@@ -4,5 +4,13 @@ const login = (user, pass) => {
     token: "mockToken"
   };
 };
-
-module.exports = login;
+const loginWithGithub = (token) => {
+  return {
+    isValid: true,
+    token: "mockToken"
+  };
+};
+module.exports = {
+  login,
+  loginWithGithub
+};

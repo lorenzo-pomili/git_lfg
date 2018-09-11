@@ -2,12 +2,12 @@
   "name": "git_lfg",
   "version": "0.1.0",
   "scripts": {
-    "build": "bsb -make-world",
-    "start": "bsb -make-world -w",
+    "build": "bsb -make-world -w",
     "clean": "bsb -clean-world",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack -w",
-    "webpack:production": "NODE_ENV=production webpack"
+    "server": "node BE/server.js",
+    "start": "concurrently --kill-others \"npm run webpack\" \"npm run server\""
   },
   "keywords": [
     "BuckleScript"
@@ -15,12 +15,16 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "react": "16.4.2",
-    "react-dom": "16.4.2",
+    "react": "16.5.0",
+    "react-dom": "16.5.0",
     "reason-react": "0.5.3"
   },
   "devDependencies": {
+    "@glennsl/bs-json": "3.0.0",
+    "bs-fetch": "0.3.0",
+    "bs-loader": "2.0.6",
     "bs-platform": "4.0.5",
+    "concurrently": "4.0.1",
     "express": "4.16.3",
     "webpack": "4.17.2",
     "webpack-cli": "3.1.0"

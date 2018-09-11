@@ -1,4 +1,4 @@
-const login = require("./login");
+const {login, loginWithGithub} = require("./login");
 const events = require("./events");
 const {newEvent, getEvents} = events;
 const isValidToken = require("./userValidation");
@@ -24,6 +24,19 @@ app.post('/login', (req, res) => {
   req.on("end", () => {
       const body = JSON.parse(bodyStr);
       const response = login(body.user, body.pass);
+      res.send(response);
+  })
+});
+
+// curl -d '{"token":"test_token"}' -H "Content-Type: application/json" -X POST http://localhost:8008/loginWithGithub
+app.post('/loginWithGithub', (req, res) => {
+  let bodyStr = "";
+  req.on("data", (chunk) => {
+      bodyStr += chunk.toString();
+  });
+  req.on("end", () => {
+      const body = JSON.parse(bodyStr);
+      const response = loginWithGithub(body.token);
       res.send(response);
   })
 });
