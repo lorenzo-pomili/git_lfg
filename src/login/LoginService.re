@@ -1,5 +1,3 @@
-let server_url = "http://localhost:8008";
-
 module Login = {
   type response = {
     isValid: bool,
@@ -21,7 +19,7 @@ module Login = {
 let loginWithGithub = token =>
   Js.Promise.(
     Fetch.fetchWithInit(
-      server_url ++ "/loginWithGithub",
+      ServicesTools.server_url ++ "/loginWithGithub",
       Fetch.RequestInit.make(
         ~method_=Post,
         ~body=

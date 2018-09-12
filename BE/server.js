@@ -46,6 +46,10 @@ app.get('/getEvents', (req, res) => {
   res.send(getEvents());
 });
 
+app.get('/getAllEvents', (req, res) => {
+  res.send(getEvents());
+});
+
 // curl -d '{"token":"mockToken", "eventName":"testEvent", "eventData":{}}' -H "Content-Type: application/json" -X POST http://localhost:8008/newEvent
 app.post('/newEvent', (req, res) => {
   let bodyStr = "";
