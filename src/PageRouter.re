@@ -13,7 +13,7 @@ let getRoute = path =>
 let getPageFromPath = path => {
   let route = getRoute(path);
   switch (route) {
-  | EventDetail(id) => <EventDetailLoder eventId=id />
+  | EventDetail(id) => <EventDetailLoader.Render eventId=id />
   | Login => <LoginPage />
   | Home => <Home />
   };
