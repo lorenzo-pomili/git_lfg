@@ -1,7 +1,10 @@
 let renderList = l => ReasonReact.array(Array.of_list(l));
 
-let renderEvent = (i, event: Event.event) =>
-  <div key={"Event" ++ string_of_int(i)}>
+let goToDetail = id => ReasonReact.Router.push("/eventDetail/" ++ id);
+
+let renderEvent = (i, event: Event.eventOfList) =>
+  <div
+    key={"Event" ++ string_of_int(i)} onClick={_e => goToDetail(event.id)}>
     {ReasonReact.string(event.eventName)}
   </div>;
 

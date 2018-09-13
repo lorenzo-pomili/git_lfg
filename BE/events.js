@@ -5,14 +5,21 @@ const newEvent = (eventName, eventData) => {
 
 const getEvents = () => {
   return [
-    { eventName: "test Event 0", eventData: {} },
-    { eventName: "test Event 1", eventData: {} },
-    { eventName: "test Event 2", eventData: {} },
-    { eventName: "test Event 3", eventData: {} }
+    { id: "0" , eventName: "test Event 0", eventData: {} },
+    { id: "1" , eventName: "test Event 1", eventData: {} },
+    { id: "2" , eventName: "test Event 2", eventData: {} },
+    { id: "3" , eventName: "test Event 3", eventData: {} }
   ]
 };
 
+const getEventDetail = (id) => {
+  return {
+    name: "test event detail"
+  };
+}
+
 module.exports = {
   newEvent,
-  getEvents
+  getEvents,
+  getEventDetail
 };

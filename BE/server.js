@@ -1,6 +1,6 @@
 const {login, loginWithGithub} = require("./login");
 const events = require("./events");
-const {newEvent, getEvents} = events;
+const {newEvent, getEvents, getEventDetail} = events;
 const isValidToken = require("./userValidation");
 
 const fs = require('fs');
@@ -48,6 +48,13 @@ app.get('/getEvents', (req, res) => {
 
 app.get('/getAllEvents', (req, res) => {
   res.send(getEvents());
+});
+
+// curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8008/getEventDetail/42
+app.get('/getEventDetail/:id', (req, res) => {
+  setTimeout(() => {
+    res.send(getEventDetail(req.params.id));
+  }, 3000);
 });
 
 // curl -d '{"token":"mockToken", "eventName":"testEvent", "eventData":{}}' -H "Content-Type: application/json" -X POST http://localhost:8008/newEvent

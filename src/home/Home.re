@@ -1,7 +1,7 @@
-type state = {events: list(Event.event)};
+type state = {events: list(Event.eventOfList)};
 
 type action =
-  | InitEvents(list(Event.event));
+  | InitEvents(list(Event.eventOfList));
 
 let component = ReasonReact.reducerComponent("Home");
 
