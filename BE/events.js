@@ -14,7 +14,14 @@ const getEvents = () => {
 
 const getEventDetail = (id) => {
   return {
-    name: "test event detail"
+    name: "test event detail",
+    partecipants: [
+      {name: "partecipant 0"},
+      {name: "partecipant 1"},
+      {name: "partecipant 2"},
+      {name: "partecipant 3"},
+      {name: "partecipant 4"}
+    ]
   };
 }
 
