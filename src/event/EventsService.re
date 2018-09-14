@@ -1,4 +1,4 @@
-let getAllEvents = (): Js.Promise.t(list(Event.eventOfList)) =>
+let getAllEvents = (token: string): Js.Promise.t(list(Event.eventOfList)) =>
   Js.Promise.(
     Fetch.fetch(ServicesTools.server_url ++ "/getAllEvents")
     |> then_(Fetch.Response.json)

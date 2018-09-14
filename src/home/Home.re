@@ -1,22 +1,31 @@
-type state = {events: list(Event.eventOfList)};
+let getToken = () => Dom.Storage.(localStorage |> getItem("token"));
+
+type state = {token: option(string)};
 
 type action =
-  | InitEvents(list(Event.eventOfList));
+  | GetToken(string);
 
 let component = ReasonReact.reducerComponent("Home");
 
 let make = _ => {
   ...component,
-  initialState: () => {events: []},
+  initialState: () => {token: None},
   didMount: self =>
-    Js.Promise.(
-      EventsService.getAllEvents()
-      |> then_(res => resolve(self.send(InitEvents(res))))
-      |> ignore
-    ),
+    switch (getToken()) {
+    | None => ReasonReact.Router.push("/")
+    | Some(token) => self.send(GetToken(token))
+    },
   reducer: (action, _state) =>
     switch (action) {
-    | InitEvents(el) => ReasonReact.Update({events: el})
+    | GetToken(token) => ReasonReact.Update({token: Some(token)})
     },
-  render: self => <div> <EventsRender events={self.state.events} /> </div>,
+  render: self =>
+    <div>
+      {
+        switch (self.state.token) {
+        | None => <div> {ReasonReact.string("login required")} </div>
+        | Some(token) => <EventsRenderLoader.Render token />
+        }
+      }
+    </div>,
 };

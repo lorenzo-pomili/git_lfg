@@ -45,7 +45,10 @@ app.post('/loginWithGithub', (req, res) => {
 app.get('/getEvents', (req, res) => {
   res.send(getEvents());
 });
-
+// curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8008/getAllEvents
+// TODO: should be consider token in some way?
+// yes -> implement here
+// no -> remove token when this service is used
 app.get('/getAllEvents', (req, res) => {
   res.send(getEvents());
 });
