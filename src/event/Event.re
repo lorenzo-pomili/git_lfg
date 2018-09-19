@@ -29,3 +29,16 @@ module Decoder = {
     partecipants: json |> field("partecipants", to_partecipants),
   };
 };
+
+module Encoder = {
+  open Json.Encode;
+  let to_partecipant = (partecipant: partecipant) =>
+    object_([("name", string(partecipant.name))]);
+  let to_partecipants_list = (partecipants: list(partecipant)) =>
+    array(to_partecipant, Belt.List.toArray(partecipants));
+  let to_event = (event: event) =>
+    object_([
+      ("name", string(event.name)),
+      ("partecipants", to_partecipants_list(event.partecipants)),
+    ]);
+};

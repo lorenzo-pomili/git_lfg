@@ -1,6 +1,5 @@
-const newEvent = (eventName, eventData) => {
-  console.log(eventName);
-  console.log(JSON.stringify(eventData));
+const newEvent = (event) => {
+  console.log(JSON.stringify(event));
 };
 
 const getEvents = () => {

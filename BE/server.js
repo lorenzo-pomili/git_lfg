@@ -60,7 +60,7 @@ app.get('/getEventDetail/:id', (req, res) => {
   }, 3000);
 });
 
-// curl -d '{"token":"mockToken", "eventName":"testEvent", "eventData":{}}' -H "Content-Type: application/json" -X POST http://localhost:8008/newEvent
+// curl -d '{"token":"mockToken", {"name":"testEvent", "partecipants":{}}}' -H "Content-Type: application/json" -X POST http://localhost:8008/newEvent
 app.post('/newEvent', (req, res) => {
   let bodyStr = "";
   req.on("data", (chunk) => {
@@ -69,7 +69,7 @@ app.post('/newEvent', (req, res) => {
   req.on("end", () => {
       const body = JSON.parse(bodyStr);
       if(isValidToken(body.token)){
-        const response = newEvent(body.eventName, body.eventData);
+        const response = newEvent(body);
         res.send(response);
       }else{
         res.status(403).send({ error: "access denie" });
