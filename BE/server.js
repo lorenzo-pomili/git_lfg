@@ -12,8 +12,9 @@ const port = "8008";
 const filepath = __dirname+"/mockData.json";
 const filepathStorage = __dirname+"/dataStorage.json";
 const filepathSuggests = __dirname+"/dataSuggests.json";
+const publicPath = __dirname+"/../public";
 
-app.use("/", express.static(__dirname + '/../public'));
+app.use("/", express.static(publicPath));
 
 // curl -d '{"user":"testUser", "key2":"testPass"}' -H "Content-Type: application/json" -X POST http://localhost:8008/login
 app.post('/login', (req, res) => {
@@ -75,6 +76,10 @@ app.post('/newEvent', (req, res) => {
         res.status(403).send({ error: "access denie" });
       }
   })
+});
+
+app.all("*", function(req, res){
+    res.sendFile('index.html', { root: publicPath } );
 });
 
 app.listen(port);
