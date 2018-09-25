@@ -16,5 +16,6 @@ let make = (_, ~event: Event.event) => {
           {RenderHelpers.renderList(event.partecipants, renderPartecipant)}
         </div>
       </div>
+      <div onClick={_e => ()}> {ReasonReact.string("Join Event")} </div>
     </div>,
 };

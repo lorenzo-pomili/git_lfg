@@ -1,30 +1,28 @@
-let getToken = () => Dom.Storage.(localStorage |> getItem("token"));
-
-type state = {token: option(string)};
+type state = {user: option(User.user)};
 
 type action =
-  | GetToken(string);
+  | GetUser(User.user);
 
 let component = ReasonReact.reducerComponent("Home");
 
 let make = _ => {
   ...component,
-  initialState: () => {token: None},
+  initialState: () => {user: None},
   didMount: self =>
-    switch (getToken()) {
+    switch (User.getUser()) {
     | None => ReasonReact.Router.push("/")
-    | Some(token) => self.send(GetToken(token))
+    | Some(user) => self.send(GetUser(user))
     },
   reducer: (action, _state) =>
     switch (action) {
-    | GetToken(token) => ReasonReact.Update({token: Some(token)})
+    | GetUser(user) => ReasonReact.Update({user: Some(user)})
     },
   render: self =>
     <div>
       {
-        switch (self.state.token) {
+        switch (self.state.user) {
         | None => <div> {ReasonReact.string("login required")} </div>
-        | Some(token) => <EventsRenderLoader.Render token />
+        | Some(user) => <EventsRenderLoader.Render token={user.token} />
         }
       }
     </div>,

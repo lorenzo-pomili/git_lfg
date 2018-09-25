@@ -1,6 +1,6 @@
 const {login, loginWithGithub} = require("./login");
 const events = require("./events");
-const {newEvent, getEvents, getEventDetail} = events;
+const {newEvent, getEvents, getEventDetail, joinEvent} = events;
 const isValidToken = require("./userValidation");
 
 const fs = require('fs');
@@ -71,6 +71,22 @@ app.post('/newEvent', (req, res) => {
       const body = JSON.parse(bodyStr);
       if(isValidToken(body.token)){
         const response = newEvent(body);
+        res.send(response);
+      }else{
+        res.status(403).send({ error: "access denie" });
+      }
+  })
+});
+
+app.post('/joinEvent', (req, res) => {
+  let bodyStr = "";
+  req.on("data", (chunk) => {
+      bodyStr += chunk.toString();
+  });
+  req.on("end", () => {
+      const body = JSON.parse(bodyStr);
+      if(isValidToken(body.token)){
+        const response = joinEvent(body);
         res.send(response);
       }else{
         res.status(403).send({ error: "access denie" });

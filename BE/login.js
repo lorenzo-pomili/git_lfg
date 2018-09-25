@@ -7,7 +7,11 @@ const login = (user, pass) => {
 const loginWithGithub = (token) => {
   return {
     isValid: true,
-    token: "mockToken"
+    user: {
+      id: "test0",
+      token: "mockToken",
+      name: "Test User"
+    }
   };
 };
 module.exports = {

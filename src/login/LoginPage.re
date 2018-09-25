@@ -2,17 +2,14 @@ type state = {logged: bool};
 type action =
   | Login;
 
-let getToken = () => Dom.Storage.(localStorage |> getItem("token"));
-let setToken = token => Dom.Storage.(localStorage |> setItem("token", token));
-
 let tryLoginWithGithub = token =>
   LoginService.loginWithGithub(token)
   |> Js.Promise.then_(result => Js.Promise.resolve(result));
 
-let loginWithGithub = (token, send) => {
-  setToken(token);
+let loginWithGithub = (user, send) => {
+  User.setUser(user);
   Js.Promise.(
-    tryLoginWithGithub(token)
+    tryLoginWithGithub(user.token)
     |> then_((res: LoginService.Login.response) =>
          resolve(
            if (res.isValid) {
@@ -32,10 +29,10 @@ let make = _ => {
   ...component,
   initialState: () => {logged: false},
   didMount: self => {
-    let token = getToken();
-    switch (token) {
+    let user = User.getUser();
+    switch (user) {
     | None => ()
-    | Some(token) => loginWithGithub(token, self.send)
+    | Some(u) => loginWithGithub(u, self.send)
     };
   },
   reducer: (action, _state) =>
@@ -46,7 +43,13 @@ let make = _ => {
     <div>
       <div
         className="loginButton"
-        onClick={_e => loginWithGithub("test_token", self.send)}>
+        onClick={
+          _e =>
+            loginWithGithub(
+              {id: "id", token: "test_token", name: "Test User"},
+              self.send,
+            )
+        }>
         {ReasonReact.string("Login with Github")}
       </div>
     </div>,

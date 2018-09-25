@@ -24,8 +24,13 @@ const getEventDetail = (id) => {
   };
 }
 
+const joinEvent = ({token, user}) => {
+    return {};
+};
+
 module.exports = {
   newEvent,
   getEvents,
+  joinEvent,
   getEventDetail
 };

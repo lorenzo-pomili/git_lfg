@@ -27,3 +27,24 @@ let addEvent = (event: Event.event) =>
     )
     |> resolve
   );
+
+let joinEvent = (event: Event.event, user: User.user) =>
+  Js.Promise.(
+    Fetch.fetchWithInit(
+      ServicesTools.server_url ++ "/joinEvent",
+      Fetch.RequestInit.make(
+        ~method_=Post,
+        ~body=
+          Fetch.BodyInit.make(
+            Json.stringify(
+              Json.Encode.object_([
+                ("user", User.Encoder.to_user(user)),
+                ("event", Event.Encoder.to_event(event)),
+              ]),
+            ),
+          ),
+        (),
+      ),
+    )
+    |> resolve
+  );

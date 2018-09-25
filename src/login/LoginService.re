@@ -1,13 +1,13 @@
 module Login = {
   type response = {
     isValid: bool,
-    token: string,
+    user: User.user,
   };
   module Decoder = {
     open Json.Decode;
     let to_response = json: response => {
       isValid: json |> field("isValid", bool),
-      token: json |> field("token", string),
+      user: json |> field("user", User.Decoder.to_user),
     };
   };
   module Encode = {
