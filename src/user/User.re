@@ -26,7 +26,7 @@ module Encoder = {
 let getUser = () =>
   switch (Dom.Storage.(localStorage |> getItem("user"))) {
   | None => None
-  | Some(user) => Some(Decoder.to_user(Js.Json.string(user)))
+  | Some(user) => Some(Decoder.to_user(Js.Json.parseExn(user)))
   };
 
 let setUser = user =>
