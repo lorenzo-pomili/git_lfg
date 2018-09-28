@@ -1,4 +1,45 @@
 .loginButton {
-  cursor: pointer;
-  text-align: center;
+    cursor: pointer;
+    text-align: center;
+}
+
+.eventContainer {
+    width: 150px;
+}
+
+.newEventButton {
+    cursor: pointer;
+    background-color: #CCCCCC;
+    border: 1px solid #BBBBBB;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.eventInList {
+    text-align: center;
+    border: 1px solid #000000;
+    cursor: pointer;
+}
+
+.eventDetailContainer {
+    width: 200px;
+}
+
+.eventDetailName {
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #BBBBBB;
+    background-color: #CCCCCC;
+}
+
+.partecipantsList .partecipantInList {
+    text-align: right;
+    border: 1px solid #00FFFF;
+}
+
+.joinButton {
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #BBBBBB;
+    background-color: #CCCCCC;
 }

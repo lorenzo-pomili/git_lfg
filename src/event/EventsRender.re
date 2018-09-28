@@ -9,7 +9,9 @@ let goToDetail = id => ReasonReact.Router.push("/eventDetail/" ++ id);
 
 let renderEvent = (i, event: Event.eventOfList) =>
   <div
-    key={"Event" ++ string_of_int(i)} onClick={_e => goToDetail(event.id)}>
+    className="eventInList"
+    key={"Event" ++ string_of_int(i)}
+    onClick={_e => goToDetail(event.id)}>
     {ReasonReact.string(event.eventName)}
   </div>;
 
@@ -29,7 +31,7 @@ let make = (~events=[], _) => {
     | AddingNewEvent(adding) => ReasonReact.Update({addingNewEvent: adding})
     },
   render: self =>
-    <div>
+    <div className="eventContainer">
       <div>
         {
           if (self.state.addingNewEvent) {
@@ -40,7 +42,9 @@ let make = (~events=[], _) => {
               />
             </div>;
           } else {
-            <div onClick={_e => changeAddingStatus(self.send, true)}>
+            <div
+              className="newEventButton"
+              onClick={_e => changeAddingStatus(self.send, true)}>
               {ReasonReact.string("Create New Event")}
             </div>;
           }
