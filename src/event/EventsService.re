@@ -46,5 +46,6 @@ let joinEvent = (event: Event.event, user: User.user) =>
         (),
       ),
     )
-    |> resolve
+    |> then_(Fetch.Response.json)
+    |> then_(newEvent => resolve(Event.Decoder.to_event(newEvent)))
   );

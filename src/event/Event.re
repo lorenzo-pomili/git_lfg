@@ -1,5 +1,6 @@
 type partecipant = {name: string};
 type event = {
+  id: option(string),
   name: string,
   partecipants: list(partecipant),
 };
@@ -25,6 +26,7 @@ module Decoder = {
     Belt.List.fromArray(json |> array(to_partecipant));
 
   let to_event = json: event => {
+    id: Some(json |> field("id", string)),
     name: json |> field("name", string),
     partecipants: json |> field("partecipants", to_partecipants),
   };
@@ -38,6 +40,7 @@ module Encoder = {
     array(to_partecipant, Belt.List.toArray(partecipants));
   let to_event = (event: event) =>
     object_([
+      ("id", string(Belt.Option.getWithDefault(event.id, ""))),
       ("name", string(event.name)),
       ("partecipants", to_partecipants_list(event.partecipants)),
     ]);

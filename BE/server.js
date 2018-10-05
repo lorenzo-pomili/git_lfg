@@ -56,9 +56,7 @@ app.get('/getAllEvents', (req, res) => {
 
 // curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8008/getEventDetail/42
 app.get('/getEventDetail/:id', (req, res) => {
-  setTimeout(() => {
-    res.send(getEventDetail(req.params.id));
-  }, 3000);
+  res.send(getEventDetail(req.params.id));
 });
 
 // curl -d '{"token":"mockToken", {"name":"testEvent", "partecipants":{}}}' -H "Content-Type: application/json" -X POST http://localhost:8008/newEvent

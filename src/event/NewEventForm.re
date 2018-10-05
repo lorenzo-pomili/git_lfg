@@ -5,7 +5,7 @@ type action =
 
 let changeEventName = (e, send) => {
   let name = ReactEvent.Form.target(e)##value;
-  send(EventNameChange({name, partecipants: []}));
+  send(EventNameChange({id: None, name, partecipants: []}));
 };
 
 let component = ReasonReact.reducerComponent("NewEventForm");

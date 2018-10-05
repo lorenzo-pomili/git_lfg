@@ -13,6 +13,7 @@ const getEvents = () => {
 
 const getEventDetail = (id) => {
   return {
+    id: id,
     name: "test event detail",
     partecipants: [
       {name: "partecipant 0"},
@@ -24,8 +25,9 @@ const getEventDetail = (id) => {
   };
 }
 
-const joinEvent = ({token, user}) => {
-    return {};
+const joinEvent = ({token, user, event}) => {
+    const newPartecipant = {name: user.name};
+    return {...event, partecipants: event.partecipants.concat(newPartecipant)};
 };
 
 module.exports = {
